@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topButton: UIButton!         // Has TAG = 1
     @IBOutlet weak var bottomButton: UIButton!      // Has TAG = 2
     @IBOutlet weak var storyTextView: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
     
     //Global variable initialized
     var storyIndex: Int = 1
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         storyTextView.text = "\(story1)"
         topButton.setTitle(answer1a, for: .normal)
         bottomButton.setTitle(answer1b, for: .normal)
+        restartButton.isHidden = true
     }
 
     
@@ -83,5 +85,20 @@ class ViewController: UIViewController {
             bottomButton.isHidden = true
             storyIndex = 4
         }
+       
+        //Show restart button when user reaches end of story
+        if storyIndex >= 4 {
+            restartButton.isHidden = false
+        }
     }
+    
+    @IBAction func restartAction(_ sender: UIButton) {
+        storyIndex = 1
+        topButton.isHidden = false
+        bottomButton.isHidden = false
+        storyTextView.text = "\(story1)"
+        topButton.setTitle(answer1a, for: .normal)
+        bottomButton.setTitle(answer1b, for: .normal)
+    }
+    
 }
